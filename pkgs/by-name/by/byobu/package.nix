@@ -1,6 +1,7 @@
 { lib
-, fetchurl
 , stdenvNoCC
+, fetchFromGitHub
+, autoreconfHook
 , makeWrapper
 , python3
 , perl
@@ -18,17 +19,19 @@ let
 in
 stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "byobu";
-  version = "5.133";
+  version = "6.10";
 
-  src = fetchurl {
-    url = "https://launchpad.net/byobu/trunk/${finalAttrs.version}/+download/byobu_${finalAttrs.version}.orig.tar.gz";
-    hash = "sha256-TY6kj4wFnlb3F034mwSgjDIoa65aIVYsXG9hvm2rdWM=";
+  src = fetchFromGitHub {
+    owner = "dustinkirkland";
+    repo = "byobu";
+    rev = finalAttrs.version;
+    hash = "sha256-fRU47Mh6feurK3ht4Lfzv/zZk61CdDILX0Iq1oysSKE=";
   };
 
   doCheck = true;
 
   strictdeps = true;
-  nativeBuildInputs = [ makeWrapper gettext ];
+  nativeBuildInputs = [ autoreconfHook makeWrapper gettext ];
   buildInputs = [ perl ]; # perl is needed for `lib/byobu/include/*` scripts
   propagatedBuildInputs = [ textual-window-manager screen ];
 
