@@ -1,17 +1,28 @@
-{ lib, stdenv, fetchurl, makeWrapper
-, python3, perl, tmux, textual-window-manager ? tmux
-, gettext, vim, bc, screen }:
+{ lib
+, fetchurl
+, stdenvNoCC
+, makeWrapper
+, python3
+, perl
+, tmux
+, gettext
+, vim
+, bc
+, screen
+
+, textual-window-manager ? tmux
+}:
 
 let
   pythonEnv = python3.withPackages (ps: with ps; [ snack ]);
 in
-stdenv.mkDerivation rec {
-  version = "5.133";
+stdenvNoCC.mkDerivation (finalAttrs: {
   pname = "byobu";
+  version = "5.133";
 
   src = fetchurl {
-    url = "https://launchpad.net/byobu/trunk/${version}/+download/byobu_${version}.orig.tar.gz";
-    sha256 = "0qvmmdnvwqbgbhn5c8asmrmjhclcl029py2d2zvmd7h5ij7s93jd";
+    url = "https://launchpad.net/byobu/trunk/${finalAttrs.version}/+download/byobu_${finalAttrs.version}.orig.tar.gz";
+    hash = "sha256-TY6kj4wFnlb3F034mwSgjDIoa65aIVYsXG9hvm2rdWM=";
   };
 
   doCheck = true;
@@ -73,4 +84,4 @@ stdenv.mkDerivation rec {
     platforms = platforms.unix;
     maintainers = with maintainers; [ qknight berbiche ];
   };
-}
+})
