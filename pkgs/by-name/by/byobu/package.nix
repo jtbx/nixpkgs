@@ -1,5 +1,5 @@
 { lib, stdenv, fetchurl, makeWrapper
-, python3, perl, textual-window-manager
+, python3, perl, tmux, textual-window-manager ? tmux
 , gettext, vim, bc, screen }:
 
 let
