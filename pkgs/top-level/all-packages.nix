@@ -13165,7 +13165,7 @@ with pkgs;
 
   sigi = callPackage ../applications/misc/sigi { };
 
-  sigil = libsForQt5.callPackage ../by-name/si/sigil/package.nix { };
+  sigil = qt6Packages.callPackage ../by-name/si/sigil/package.nix { };
 
   signalbackup-tools = darwin.apple_sdk_11_0.callPackage
     ../applications/networking/instant-messengers/signalbackup-tools { };

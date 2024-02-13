@@ -1,25 +1,26 @@
 { lib
-, mkDerivation
+, stdenv
 , fetchFromGitHub
 , makeWrapper
 , cmake
 , pkg-config
 , qtbase
+, qtsvg
 , qttools
 , qtwebengine
-, qtxmlpatterns
+, qt5compat
 , python3Packages
 }:
 
-mkDerivation rec {
+stdenv.mkDerivation (finalAttrs: {
   pname = "sigil";
-  version = "2.0.1";
+  version = "2.0.2";
 
   src = fetchFromGitHub {
     owner = "Sigil-Ebook";
     repo = "Sigil";
-    rev = version;
-    hash = "sha256-d54N6Kb+xLMxlRwqxqWXnFGQCvUmSy9z6j86aV+VioU=";
+    rev = finalAttrs.version;
+    hash = "sha256-fWlN+3C3CgX59TSWefTN6WyTxnpPWvBQRExqDGCfjoQ=";
   };
 
   pythonPath = with python3Packages; [ lxml ];
@@ -27,7 +28,7 @@ mkDerivation rec {
   nativeBuildInputs = [ cmake pkg-config makeWrapper ];
 
   buildInputs = [
-    qtbase qttools qtwebengine qtxmlpatterns
+    qtbase qtsvg qttools qtwebengine qt5compat
     python3Packages.lxml
   ];
 
@@ -51,4 +52,4 @@ mkDerivation rec {
     platforms = platforms.linux;
     mainProgram = "sigil";
   };
-}
+})
