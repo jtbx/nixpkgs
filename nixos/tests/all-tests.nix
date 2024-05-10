@@ -233,6 +233,7 @@ in {
   curl-impersonate = handleTest ./curl-impersonate.nix {};
   custom-ca = handleTest ./custom-ca.nix {};
   croc = handleTest ./croc.nix {};
+  cyrus-imap = handleTest ./cyrus-imap.nix { };
   darling = handleTest ./darling.nix {};
   dae = handleTest ./dae.nix {};
   davis = handleTest ./davis.nix {};
