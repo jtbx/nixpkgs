@@ -441,6 +441,10 @@ in {
 
     rtl8814au = callPackage ../os-specific/linux/rtl8814au { };
 
+    rtl8852au = callPackage ../os-specific/linux/rtl8852au { };
+
+    rtl8852bu = callPackage ../os-specific/linux/rtl8852bu { };
+
     rtl88xxau-aircrack = callPackage ../os-specific/linux/rtl88xxau-aircrack {};
 
     rtl8821au = callPackage ../os-specific/linux/rtl8821au { };
@@ -534,7 +538,7 @@ in {
 
     virtualboxGuestAdditions = callPackage ../applications/virtualization/virtualbox/guest-additions { };
 
-    vm-tools = callPackage ../os-specific/linux/vm-tools { };
+    mm-tools = callPackage ../os-specific/linux/mm-tools { };
 
     vmm_clock = callPackage ../os-specific/linux/vmm_clock { };
 
@@ -583,6 +587,7 @@ in {
     hid-nintendo = throw "hid-nintendo was added in mainline kernel version 5.16"; # Added 2023-07-30
     sch_cake = throw "sch_cake was added in mainline kernel version 4.19"; # Added 2023-06-14
     rtl8723bs = throw "rtl8723bs was added in mainline kernel version 4.12"; # Added 2023-06-14
+    vm-tools = self.mm-tools;
     xmm7360-pci = throw "Support for the XMM7360 WWAN card was added to the iosm kmod in mainline kernel version 5.18";
   });
 
